@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
+<% include partials/header %>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Name</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+<h1>Hello: <%= name.toUpperCase() %> </h1>
+<% if(name.toLowerCase() === "mateusz"){ %>
+<p>You are admin</p>
+<% } else { %>
+<p>You are guest</p>
+<% } %>
 
-<body>
-    <h1>Hello: <%= name.toUpperCase() %> </h1>
-    <% if(name.toLowerCase() === "mateusz"){ %>
-        <p>You are admin</p>
-    <% } else { %>
-        <p>You are guest</p>
-    <% } %>
-</body>
-
-</html>
+<% include partials/footer %>
