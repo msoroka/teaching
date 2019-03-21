@@ -1,5 +1,10 @@
 var express = require('express');
 var app = express();
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -16,24 +21,24 @@ app.get("/name/:name", function (req, res) {
     });
 });
 
-app.get("/posts", function (req, res) {
-    var posts = [{
-            title: "Post 1",
-            author: "Author 1",
-        },
-        {
-            title: "Post 2",
-            author: "Author 2",
-        },
-        {
-            title: "Post 3",
-            author: "Author 3",
-        },
-    ];
+var posts = [
+    {"name": "Post 1"},
+    {"name": "Post 2"},
+    {"name": "Post 3"},
+];
 
+app.get("/posts", function (req, res) {
     res.render("posts", {
         posts: posts,
     });
+});
+
+app.post("/add-post", function (req, res) {
+    var name = req.body.post_name;
+    posts.push({
+        "name": name
+    });
+    res.redirect("/posts");
 });
 
 app.listen(3000, function () {
