@@ -1,4 +1,4 @@
-<% include partials/header %>
+<% include ../partials/header %>
 
     <div class="container">
         <header class="jumbotron">
@@ -6,7 +6,7 @@
                 <h1>Welcome To YelpCamp!</h1>
                 <p>View our hand-picked campgrounds over the world</p>
                 <p>
-                    <a class="btn btn-primary btn-md" href="/campgrounds/new">Add new campground</a>
+                    <a class="btn btn-primary btn-md" href="/campgrounds/create">Add new campground</a>
                 </p>
             </div>
         </header>
@@ -18,14 +18,13 @@
                     <div class="card mb-4">
                         <img class="card-img-top" src="<%= campground.image %>">
                         <div class="card-body">
-                            <h5 class="card-title"><%= campground.name %></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h3 class="card-title"><%= campground.name %></h3>
+                            <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More details</a>
                         </div>
                     </div>
-                </div>
+                </div> 
             <% }); %>
         </div> 
     </div>  
 
-<% include partials/footer %>
+<% include ../partials/footer %>
