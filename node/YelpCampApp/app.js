@@ -49,7 +49,6 @@ app.get("/campgrounds/:id", function (req, res) {
             console.log(err);
             res.redirect("/campgrounds");
         } else {
-            console.log(foundCampground);
             res.render("campgrounds/show", {
                 campground: foundCampground,
             });
