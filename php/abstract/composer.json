@@ -1,15 +1,16 @@
 {
-    "name": "msoroka/abstract",
-    "authors": [
-        {
-            "name": "Mateusz Soroka",
-            "email": "xmsoroka@gmail.com"
-        }
-    ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "App\\": "src/"
-        }
+  "name": "msoroka/abstract",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mateusz Soroka",
+      "email": "xmsoroka@gmail.com"
     }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
 }

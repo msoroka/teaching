@@ -2,7 +2,7 @@
 
 namespace App\Format;
 
-abstract class BaseFormat
+abstract class BaseFormat implements BaseFormatInterface
 {
     protected $data;
 
