@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -15,28 +16,35 @@ class BlogController extends AbstractController
 {
     private const POSTS = [
         [
-            "id" => "1",
-            "slug" => "post-1",
+            "id"    => "1",
+            "slug"  => "post-1",
             "title" => "Post 1",
         ],
         [
-            "id" => "2",
-            "slug" => "post-2",
+            "id"    => "2",
+            "slug"  => "post-2",
             "title" => "Post 2",
         ],
     ];
 
     /**
-     * @param $page
+     * @param Request $request
+     * @param int $page
      * @return JsonResponse
      * @Route("/{page}", name="blog_list", defaults={"page" = 1})
      */
-    public function list($page = 1): JsonResponse
+    public function list(Request $request, $page = 1): JsonResponse
     {
-        return new JsonResponse([
-            "page" => $page,
-            "data" => self::POSTS
-        ]);
+        $limit = $request->get("limit", "10");
+
+        return $this->json(
+            [
+                "page"  => $page,
+                "limit" => $limit,
+                "data"  => self::POSTS,
+            ],
+            200
+        );
     }
 
     /**
@@ -46,9 +54,12 @@ class BlogController extends AbstractController
      */
     public function post($id): JsonResponse
     {
-        return new JsonResponse([
-            "data" => self::POSTS[array_search($id, array_column(self::POSTS, "id"))]
-        ]);
+        return $this->json(
+            [
+                "data" => self::POSTS[array_search($id, array_column(self::POSTS, "id"))],
+            ],
+            200
+        );
     }
 
     /**
@@ -58,8 +69,11 @@ class BlogController extends AbstractController
      */
     public function postBySlug($slug): JsonResponse
     {
-        return new JsonResponse(
-            self::POSTS[array_search($slug, array_column(self::POSTS, "slug"))]
+        return $this->json(
+            [
+                "data" => self::POSTS[array_search($slug, array_column(self::POSTS, "slug"))],
+            ],
+            200
         );
     }
 }
