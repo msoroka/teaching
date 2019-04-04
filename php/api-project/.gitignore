@@ -7,3 +7,5 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+api-project.local.crt
+.DS_Store
